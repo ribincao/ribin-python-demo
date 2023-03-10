@@ -29,9 +29,8 @@ class KCP:
 
     def recv(self):
         data, addr = self.sock.recvfrom(1024)
-        print(data, addr)
-        conv, cmd, frg, wnd, ts, sn, una, length = struct.unpack('!IbbHIHHH', data[:20])
-        data = data[20:20 + length]
+        conv, cmd, frg, wnd, ts, sn, una, length = struct.unpack('!IbbHIHHH', data[:18])
+        data = data[18:18 + length]
 
         if cmd != 1:
             return None
